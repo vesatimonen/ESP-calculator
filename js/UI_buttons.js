@@ -45,6 +45,11 @@ function uiKeypadClick(event) {
         uiDisplayRedraw();
         return;
     }
+    if (key == "waves") {
+        calcWave();
+        uiDisplayRedraw();
+        return;
+    }
     if (key == "=") {
         calcEquals();
         uiDisplayRedraw();

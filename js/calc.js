@@ -164,7 +164,7 @@ function calcEntryIsNumber() {
 
 
 /*****************************************************************************
- * ESP keys: ESP sum only for digit, ESP key, digit, =
+ * Operator keys: wave gives ESP sum only for digit, operator, digit
  * Anything else is ordinary math
  *****************************************************************************/
 /* Number on display becomes first number, key gives operation */
@@ -192,7 +192,7 @@ function calcEsp(operation) {
 
 
 /*****************************************************************************
- * Equals
+ * Equals and digit sums
  *****************************************************************************/
 /* Sum of all digits in text */
 function calcDigitSum(text) {
@@ -216,31 +216,51 @@ function calcAdd(first, second) {
     return (BigInt(first) + BigInt(second)).toString();
 }
 
-/* Result of two numbers: ordinary math or ESP sum */
-function calcPairResult() {
-    if (calc.ordinary) {
-        return calcOperate(calc.first, calc.operation, calc.entry);
-    }
-    return calcAdd(calc.first, calc.entry);
-}
-
-/* Show result, then next number starts in ESP mode again */
-function calcEquals() {
-    if (calc.resultShown) {
-        return;
-    }
-    if (calc.first != undefined && !calc.secondStarted) {
-        return; /* Wait for second number */
-    }
-
-    if (calc.first != undefined) {
-        calc.entry = calcPairResult();
-    } else {
-        calc.entry = String(calcDigitResult(calc.entry));
-    }
+/* Result shown, next number starts in ESP mode again */
+function calcShowResult(result) {
+    calc.entry       = result;
     calc.first       = undefined;
     calc.ordinary    = false;
     calc.resultShown = true;
+}
+
+/* Normal calculator equals */
+function calcEquals() {
+    if (!calcEntryIsNumber()) {
+        return;
+    }
+    if (calc.first == undefined) {
+        calcShowResult(calc.entry);
+        return;
+    }
+    if (!calc.secondStarted) {
+        return; /* Wait for second number */
+    }
+    calcShowResult(calcOperate(calc.first, calc.operation, calc.entry));
+}
+
+
+/*****************************************************************************
+ * Wave key, special results
+ *****************************************************************************/
+/* Single digit, operator, single digit: ESP sum */
+function calcWaveEspSum() {
+    return calc.first != undefined && calc.secondStarted && !calc.ordinary;
+}
+
+/* ESP sum, or digit sum modulo 9 of plain number, else nothing */
+function calcWave() {
+    if (!calcEntryIsNumber()) {
+        return;
+    }
+    if (calcWaveEspSum()) {
+        calcShowResult(calcAdd(calc.first, calc.entry));
+        return;
+    }
+    if (calc.first != undefined) {
+        return; /* Nothing in middle of calculation */
+    }
+    calcShowResult(String(calcDigitResult(calc.entry)));
 }
 
 
