@@ -59,6 +59,24 @@ function calcPoint() {
 }
 
 
+/* Change sign of number on display, 0 and Error stay, not right after ESP key */
+function calcSign() {
+    if (!calcEntryIsNumber() || Number(calc.entry) == 0) {
+        return;
+    }
+    if (calc.first != undefined && !calc.secondStarted) {
+        return;
+    }
+
+    if (calc.entry.startsWith("-")) {
+        calc.entry = calc.entry.slice(1);
+    } else {
+        calc.entry = "-" + calc.entry;
+    }
+    calcCheckOrdinary();
+}
+
+
 /*****************************************************************************
  * Ordinary math
  *****************************************************************************/
@@ -181,8 +199,8 @@ function calcDigitSum(text) {
     let sum = 0;
 
     for (const digit of text) {
-        if (digit != ".") {
-            sum = sum + Number(digit); /* Point is skipped */
+        if (digit >= "0" && digit <= "9") {
+            sum = sum + Number(digit); /* Point and minus are skipped */
         }
     }
     return sum;

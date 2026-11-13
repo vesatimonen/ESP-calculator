@@ -178,6 +178,11 @@ html {
     padding-bottom: 0; /* SVG needs no Oswald lift */
 }
 
+/* Sign key is icon, needs no Oswald lift */
+.calc-sign {
+    padding-bottom: 0;
+}
+
 /* ESP symbol size and line, same weight as digits */
 .calc-key svg {
     width:          0.616em; /* 56% of digit height */

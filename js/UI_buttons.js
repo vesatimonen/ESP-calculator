@@ -35,6 +35,11 @@ function uiKeypadClick(event) {
         uiDisplayRedraw();
         return;
     }
+    if (key == "sign") {
+        calcSign();
+        uiDisplayRedraw();
+        return;
+    }
     if (key == ".") {
         calcPoint();
         uiDisplayRedraw();
