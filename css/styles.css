@@ -180,7 +180,7 @@ html {
 
 /* ESP symbol size and line, same weight as digits */
 .calc-key svg {
-    width:          0.77em; /* 70% of digit height */
-    height:         0.77em;
-    stroke-width:   3.1;    /* Thicker in SVG units, line stays as thick as before */
+    width:          0.616em; /* 56% of digit height */
+    height:         0.616em;
+    stroke-width:   3.875;   /* Thicker in SVG units, line stays as thick as digits */
 }

@@ -6,7 +6,7 @@ function uiKeyIsDigit(key) {
     return key.length == 1 && key >= "0" && key <= "9";
 }
 
-/* ESP keys by data-key: circle, plus, waves, square */
+/* ESP keys by data-key: times, plus, minus, divide icons */
 const UI_ESP_OPERATIONS = {
     "*": "multiply",
     "-": "add",
