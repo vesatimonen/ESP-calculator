@@ -1,0 +1,285 @@
+
+/*** Oswald font, self-hosted, license in fonts/OFL.txt ***/
+@font-face {
+    font-family:    'Oswald';
+    font-style:     normal;
+    font-weight:    400;
+    font-display:   swap;
+    src:            url('../fonts/oswald-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family:    'Oswald';
+    font-style:     normal;
+    font-weight:    700;
+    font-display:   swap;
+    src:            url('../fonts/oswald-latin-700-normal.woff2') format('woff2');
+}
+
+:root {
+    --game-screen-max-width: min(720px, calc(100svh - 144px)); /* Board fits in height, 144px for title and buttons at max scale */
+    --game-screen-min-width: 320px;
+    --ink-color:             #1C2B3A; /* Same as INK_COLOR in UI.js */
+    --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
+    --element-scale:         1;       /* Set from cell size in UI.js */
+}
+
+/*** Text color for whole page ***/
+body {
+    color:          var(--ink-color);
+}
+
+/*** Drag paints anywhere in window, no zoom or scroll by touch ***/
+html {
+    touch-action:   none;
+}
+
+/*** Global default style ***/
+* {
+    /* Prevent text selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none;
+
+    /* Default font */
+              font-family: Courier New, monospace;
+}
+
+/*** Game screen ***/
+#game-screen {
+    /* Screen size */
+    width:              calc(100vw - 10px);
+    max-width:          var(--game-screen-max-width);
+    min-width:          var(--game-screen-min-width);
+
+    margin-left:        auto;
+    margin-right:       auto;
+
+    background-color:   #B0DDFF; /* #92D2F2, #B0DDFF*/
+
+    visibility:         hidden; /* Show after load */
+}
+
+#game-title {
+    margin-top:     10px;
+
+    position:       relative; /* For about button */
+
+    font-size:      calc(36px * var(--element-scale));
+    font-weight:    bold;
+
+    text-align:     center;
+}
+
+
+#game-board {
+    position:       relative;
+
+    margin-top:     6px;
+
+    background:     #B0DDFF;
+
+    border-radius:  4px;
+
+    touch-action:   none; /* Disable all including double-tap zoom */
+/*    touch-action:   pinch-zoom; */
+
+    font-size:      calc(0.08 * min(100vw, var(--game-screen-max-width))); /* 8% of screen width */
+
+    font-family:    'Oswald', sans-serif;
+}
+
+
+/*** Modal for game over and about, in middle of board ***/
+#game-modal {
+    visibility:         hidden;
+
+    position:           absolute;
+    z-index:            1;
+
+    padding:            14px; /* Grows with text */
+    font-size:          32px;
+    font-weight:        bold;
+    text-align:         center;
+
+    background-color:   #67BFEC;
+    border:             var(--frame-width) solid var(--ink-color);
+    border-radius:      8px;
+
+    white-space:        nowrap; /* Keep size, do not squeeze near edge */
+
+    line-height: 100%;
+    margin: auto;
+
+    /* Center */
+    top:                50%;
+    left:               50%;
+    transform:          translate(-50%, -50%);
+    white-space:        nowrap; /* Keep size, do not squeeze near edge */
+}
+
+/* Small second line, hidden when empty */
+#modal-text {
+    margin-top:         8px;
+    font-size:          16px;
+    line-height:        1.25; /* Own spacing, not title 32px */
+    font-weight:        normal;
+    white-space:        pre-line; /* Keep line breaks */
+}
+
+#modal-text:empty {
+    display:            none;
+}
+
+/* Controls help in about, dashes in one column */
+.modal-help {
+    display:               grid;
+    grid-template-columns: auto auto auto;
+    column-gap:            6px;
+    width:                 fit-content;
+    margin:                0 auto 20px auto; /* Centered, empty line below */
+}
+
+.modal-help span {
+    white-space:           pre; /* No wrap, \n breaks line */
+}
+
+.modal-help span:nth-child(3n+1) {
+    text-align:            right; /* Action */
+    font-weight:           600; /* Action stands out */
+}
+
+.modal-help span:nth-child(3n) {
+    text-align:            left; /* Result */
+}
+
+#game-canvas {
+    position: absolute; /* Fills board incl. hint margin */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+}
+
+.grid-row:after {
+    content:        "";
+    clear:          both;
+
+    display:        block;
+}
+
+.grid-cell {
+    margin:         0 auto;
+    float:          left;
+
+    font-family:    'Oswald', sans-serif;
+
+    background:     none;
+}
+
+
+/*** Game controls ***/
+#game-controls {
+    margin-top:     10px;
+
+    display:        flex;
+}
+
+.button {
+    /* Behaviour */
+    display:        block;
+
+    /* Appearance */
+    color:          var(--ink-color);
+    background:     #67BFEC;
+    border:         var(--frame-width) solid var(--ink-color);
+    border-radius:  calc(16px * var(--element-scale));
+    outline:        0;
+
+    /* Size */
+    width:          calc(64px * var(--element-scale));
+    height:         calc(40px * var(--element-scale));
+    padding:        0;
+
+    /* Text position */
+    font-size:      calc(24px * var(--element-scale));
+    text-align:     center;
+
+/*    box-shadow:         3px 3px 5px rgb(0,0,0); */
+}
+
+/* Restart and undo icons, drawn in ink color */
+.button svg {
+    display:        block;
+    margin:         auto;
+    width:          calc(26px * var(--element-scale));
+    height:         calc(26px * var(--element-scale));
+    fill:           none;
+    stroke:         currentColor;
+    stroke-width:   2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.button:active:enabled {
+/*    box-shadow:         none; */
+    background:     #B0DDFF;
+}
+
+.button:disabled {
+    opacity: 0.3;
+}
+
+
+
+#game-info {
+    font-size:      calc(28px * var(--element-scale));
+    font-weight:    bold;
+    text-align:     center;
+
+    margin:         auto;
+}
+
+/*** About button, small round i at right end of title ***/
+#button-about {
+    position:       absolute;
+    right:          4px;
+    top:            50%;
+    transform:      translateY(-50%);
+
+    width:          calc(34px * var(--element-scale));
+    height:         calc(34px * var(--element-scale));
+    border-radius:  50%;
+}
+
+#button-about svg {
+    width:          calc(22px * var(--element-scale));
+    height:         calc(22px * var(--element-scale));
+    stroke-width:   3;
+}
+
+/*** Game instructions ***/
+#game-instructions {
+    margin-top:     10px;
+
+    font-size:      calc(18px * var(--element-scale));
+    text-align:     center;
+}
+
+#debug-text {
+    position: relative;
+    left: 10px;
+    font-size:      14px;
+}
+
+@keyframes image-appear {
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+
+
