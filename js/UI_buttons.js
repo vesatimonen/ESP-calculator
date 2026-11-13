@@ -35,6 +35,11 @@ function uiKeypadClick(event) {
         uiDisplayRedraw();
         return;
     }
+    if (key == "back") {
+        calcBackspace();
+        uiDisplayRedraw();
+        return;
+    }
     if (key == "sign") {
         calcSign();
         uiDisplayRedraw();

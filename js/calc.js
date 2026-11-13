@@ -66,6 +66,26 @@ function calcSign() {
 }
 
 
+/* Remove last typed character, Error clears, result and first number stay */
+function calcBackspace() {
+    if (!calcEntryIsNumber()) {
+        calcClear();
+        return;
+    }
+    if (calc.resultShown) {
+        return;
+    }
+    if (calc.first != undefined && !calc.secondStarted) {
+        return;
+    }
+
+    calc.entry = calc.entry.slice(0, -1);
+    if (calc.entry == "" || calc.entry == "-" || calc.entry == "-0") {
+        calc.entry = "0"; /* Nothing left shows 0 */
+    }
+}
+
+
 /*****************************************************************************
  * Ordinary math
  *****************************************************************************/
