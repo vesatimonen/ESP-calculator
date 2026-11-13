@@ -245,16 +245,16 @@ html {
     aspect-ratio:   1 / 1;
     border-radius:  50%;
 
-    /* Font size 0.72 of key width, digit is 0.6 of key */
+    /* Font size 0.648 of key width, digit is 0.54 of key */
     font-family:    'Oswald', sans-serif;
-    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.72);
+    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.648);
     line-height:    0.5;   /* Line must be lower than key, else text sticks to top */
     padding-bottom: 0.1em; /* Oswald digits sit low, lift 0.05em, as Dottium fontYShift */
 }
 
 /* % is wide, smaller so it stays in circle */
 .calc-key[data-key="percent"] {
-    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.576); /* 0.8 of other keys */
+    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.518); /* 0.8 of other keys */
 }
 
 /* ± sits on baseline, lift it to middle, measured */
