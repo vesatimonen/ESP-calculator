@@ -178,9 +178,10 @@ html {
     padding-bottom: 0; /* SVG needs no Oswald lift */
 }
 
-/* = key same color as operators */
+/* = key looks like operators */
 .calc-equals {
     background:     #3FA9E0;
+    padding-bottom: 0; /* SVG needs no Oswald lift */
 }
 
 /* Sign key is icon, needs no Oswald lift */
