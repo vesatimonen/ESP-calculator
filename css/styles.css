@@ -79,8 +79,7 @@ html {
     position:       relative;
 
     margin-top:     6px;
-
-    min-height:     400px; /* Room for calculator, placeholder */
+    padding:        8px;
 
     background:     #B0DDFF;
 
@@ -209,3 +208,50 @@ html {
 
 
 
+/*** Calculator display, number on right ***/
+#calc-display {
+    padding:            0 12px;
+    margin-bottom:      8px;
+
+    font-size:          calc(48px * var(--element-scale));
+    text-align:         right;
+    line-height:        1.4;
+
+    background-color:   #FFFFFF;
+    border:             var(--frame-width) solid var(--ink-color);
+    border-radius:      8px;
+
+    overflow:           hidden;
+    white-space:        nowrap;
+}
+
+/*** Keypad, 4 columns ***/
+#calc-keys {
+    display:               grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:                   8px;
+}
+
+/* Keys fill grid cell */
+.calc-key {
+    width:          100%;
+    height:         calc(56px * var(--element-scale));
+
+    font-family:    'Oswald', sans-serif;
+    font-size:      calc(28px * var(--element-scale));
+}
+
+/* Zero takes two columns */
+.calc-wide {
+    grid-column:    span 2;
+}
+
+/* C, ± and % lighter */
+.calc-func {
+    background:     #D8EEFF;
+}
+
+/* Operators darker */
+.calc-op {
+    background:     #3FA9E0;
+}
