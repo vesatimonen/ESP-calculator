@@ -106,16 +106,10 @@ html {
     color:          var(--ink-color);
     background:     #67BFEC;
     border:         var(--frame-width) solid var(--ink-color);
-    border-radius:  calc(16px * var(--element-scale));
     outline:        0;
 
-    /* Size */
-    width:          calc(64px * var(--element-scale));
-    height:         calc(40px * var(--element-scale));
+    /* Size and text position */
     padding:        0;
-
-    /* Text position */
-    font-size:      calc(24px * var(--element-scale));
     text-align:     center;
 
 /*    box-shadow:         3px 3px 5px rgb(0,0,0); */
@@ -125,11 +119,8 @@ html {
 .button svg {
     display:        block;
     margin:         auto;
-    width:          calc(26px * var(--element-scale));
-    height:         calc(26px * var(--element-scale));
     fill:           none;
     stroke:         currentColor;
-    stroke-width:   2.4;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
@@ -137,10 +128,6 @@ html {
 .button:active:enabled {
 /*    box-shadow:         none; */
     background:     #B0DDFF;
-}
-
-.button:disabled {
-    opacity: 0.3;
 }
 
 

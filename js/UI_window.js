@@ -14,7 +14,7 @@ let windowLastTouchEnd = 0;
 function windowClickButton(target) {
     const button = target.closest("button");
 
-    if (button && !button.disabled) {
+    if (button) {
         button.click();
     }
 }
