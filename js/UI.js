@@ -7,20 +7,17 @@ const FRAME_MAX_WIDTH  = 1.7;  /* Frame max in CSS px, as on iPhone */
 /* Screen width in base cells, same as old 8x8 board with margins */
 const SCREEN_CELLS = 8.65;
 
-/* Title and buttons grow with screen */
+/* Title and buttons grow and shrink with screen */
 const ELEMENT_SCALE_BASE_CELL = 50;  /* Cell size where scale is 1 */
 const ELEMENT_SCALE_MAX       = 1.3; /* Biggest scale */
 
 
 /*****************************************************************************
- * Scale for page elements, never smaller than 1
+ * Scale for page elements, shrinks with screen, max ELEMENT_SCALE_MAX
  *****************************************************************************/
 function uiElementScale(cellSize) {
     const scale = cellSize / ELEMENT_SCALE_BASE_CELL;
 
-    if (scale < 1) {
-        return 1;
-    }
     if (scale > ELEMENT_SCALE_MAX) {
         return ELEMENT_SCALE_MAX;
     }

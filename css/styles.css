@@ -18,7 +18,6 @@
 
 :root {
     --game-screen-max-width: min(720px, calc((100svh - 115px) * 0.73)); /* Page height is about 1.37 x width + 101px, measured */
-    --game-screen-min-width: 320px;
     --ink-color:             #1C2B3A; /* Same as INK_COLOR in UI.js */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -57,7 +56,6 @@ html {
     /* Screen size */
     width:              calc(100vw - 10px);
     max-width:          var(--game-screen-max-width);
-    min-width:          var(--game-screen-min-width);
 
     margin:             auto; /* Centered in window, html is flex */
 
