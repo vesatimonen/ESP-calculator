@@ -229,9 +229,13 @@ html {
 
 /*** Keypad, 4 columns ***/
 #calc-keys {
+    --key-gap:             calc(8px * var(--element-scale)); /* Scales with keys */
+
     display:               grid;
     grid-template-columns: repeat(4, 1fr);
-    gap:                   calc(8px * var(--element-scale)); /* Scales with keys */
+    gap:                   var(--key-gap);
+
+    container-type:        inline-size; /* Keys use cqw for font size */
 }
 
 /* Keys are circles, as wide as grid cell */
@@ -241,15 +245,31 @@ html {
     aspect-ratio:   1 / 1;
     border-radius:  50%;
 
+    /* Font size 0.72 of key width, digit is 0.6 of key */
     font-family:    'Oswald', sans-serif;
-    font-size:      calc(42px * var(--element-scale));
-    line-height:    1;     /* Oswald line is 1.48em, taller than key, then text sticks to top */
+    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.72);
+    line-height:    0.5;   /* Line must be lower than key, else text sticks to top */
     padding-bottom: 0.1em; /* Oswald digits sit low, lift 0.05em, as Dottium fontYShift */
+}
+
+/* % is wide, smaller so it stays in circle */
+.calc-key[data-key="percent"] {
+    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.576); /* 0.8 of other keys */
+}
+
+/* ± sits on baseline, lift it to middle, measured */
+.calc-key[data-key="sign"] {
+    padding-bottom: 0.464em;
 }
 
 /* Zero under 2, first cell in row stays empty */
 .calc-zero {
     grid-column-start: 2;
+}
+
+/* = stays in operator column */
+.calc-key[data-key="="] {
+    grid-column-start: 4;
 }
 
 /* C, ± and % lighter */
