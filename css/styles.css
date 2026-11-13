@@ -259,7 +259,15 @@ html {
     background:     #D8EEFF;
 }
 
-/* Operators darker */
+/* Operators darker, ESP symbols drawn as SVG */
 .calc-op {
     background:     #3FA9E0;
+    padding-bottom: 0; /* SVG needs no Oswald lift */
+}
+
+/* ESP symbol size and line, same weight as digits */
+.calc-key svg {
+    width:          0.77em; /* 70% of digit height */
+    height:         0.77em;
+    stroke-width:   3.1;    /* Thicker in SVG units, line stays as thick as before */
 }
