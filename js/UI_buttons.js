@@ -6,6 +6,13 @@ function uiKeyIsDigit(key) {
     return key.length == 1 && key >= "0" && key <= "9";
 }
 
+/* ESP symbol keys, data-key is old operator */
+const UI_ESP_KEYS = ["*", "-", "+", "/"];
+
+function uiKeyIsEsp(key) {
+    return UI_ESP_KEYS.includes(key);
+}
+
 function uiKeypadClick(event) {
     const button = event.target.closest("button");
     if (button == null) {
@@ -15,6 +22,11 @@ function uiKeypadClick(event) {
     const key = button.dataset.key;
     if (uiKeyIsDigit(key)) {
         calcDigit(key);
+        uiDisplayRedraw();
+        return;
+    }
+    if (uiKeyIsEsp(key)) {
+        calcEsp();
         uiDisplayRedraw();
         return;
     }
