@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: calc((100svh - 45px) * 0.78); /* Page height is about 1.28 x width + 38px, measured */
+    --game-screen-max-width: calc((100svh - 24px) * 0.738); /* Page height is about 1.35 x width + 14px, measured */
     --ink-color:             #1C2B3A; /* Dark color for text and lines */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -83,6 +83,7 @@ html {
     container-type: inline-size; /* cqw is board inner width, same as keypad */
 
     margin-top:     6px;
+    margin-bottom:  calc(2 * var(--key-gap)); /* Space under keypad, same as under display */
     padding:        8px;
 
     background:     #B0DDFF;
@@ -135,7 +136,7 @@ html {
 /*** Calculator display, number on right ***/
 #calc-display {
     padding:            0 0.15em 0.1em 0.15em; /* Sides scale with text, bottom lifts Oswald digits */
-    margin-bottom:      8px;
+    margin-bottom:      calc(2 * var(--key-gap)); /* Twice the gap between keys */
 
     font-family:        'Oswald', sans-serif;
     font-size:          var(--key-font); /* Same as keys */
