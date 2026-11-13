@@ -1,8 +1,6 @@
 /*****************************************************************************
  * Calculator state
  *****************************************************************************/
-const CALC_MAX_DIGITS = 8; /* Most digits that fit in display */
-
 const calc = {
     entry:       "0",  /* Number being typed, as text */
     resultShown: false /* Display shows result, next digit starts new entry */
@@ -12,7 +10,7 @@ const calc = {
 /*****************************************************************************
  * Number input
  *****************************************************************************/
-/* Add digit to end of entry, first digit replaces lone zero */
+/* Add digit to end of entry, first digit replaces lone zero, no length limit */
 function calcDigit(digit) {
     if (calc.resultShown) {
         calc.entry       = "0";
@@ -21,9 +19,6 @@ function calcDigit(digit) {
 
     if (calc.entry == "0") {
         calc.entry = digit;
-        return;
-    }
-    if (calc.entry.length >= CALC_MAX_DIGITS) {
         return;
     }
     calc.entry = calc.entry + digit;

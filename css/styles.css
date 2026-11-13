@@ -139,6 +139,10 @@ html {
 
     overflow:           hidden;
     white-space:        nowrap;
+
+    /* Long number overflows to left, newest digits stay visible */
+    display:            flex;
+    justify-content:    flex-end;
 }
 
 /*** Keypad, 4 columns ***/
