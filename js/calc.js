@@ -46,7 +46,61 @@ function calcDigit(digit) {
 /*****************************************************************************
  * Ordinary math
  *****************************************************************************/
-const CALC_DECIMALS = 10; /* Rounding hides float errors like 0.1 + 0.2 */
+const CALC_RESULT_DIGITS = 8; /* Result rounded to fit display, also hides float errors */
+
+const CALC_SMALLEST_FIXED = 0.001; /* Smaller results use exponential format */
+
+/* Too big or too small for 8 digits without exponent */
+function calcNeedsExponent(result) {
+    const size = Math.abs(result);
+
+    if (size >= 10 ** CALC_RESULT_DIGITS) {
+        return true;
+    }
+    return size > 0 && size < CALC_SMALLEST_FIXED;
+}
+
+/* Minus sign takes room of one digit */
+function calcSignDigits(result) {
+    if (result < 0) {
+        return 1;
+    }
+    return 0;
+}
+
+/* Like 1.2346e11, exponent, one more digit and minus use up mantissa digits */
+function calcExponentResult(result) {
+    const exponentText = "e" + Math.floor(Math.log10(Math.abs(result)));
+    const digits       = CALC_RESULT_DIGITS - exponentText.length - calcSignDigits(result);
+    const parts        = result.toExponential(digits - 1).split("e");
+
+    return String(Number(parts[0])) + "e" + Number(parts[1]);
+}
+
+/* Round decimals so minus, digits and point take at most 8 places */
+function calcFixedResult(result) {
+    const wholeDigits = String(Math.trunc(Math.abs(result))).length;
+    const room        = CALC_RESULT_DIGITS - wholeDigits - calcSignDigits(result);
+    let decimals      = 0;
+
+    if (room >= 2) {
+        decimals = room - 1; /* Point takes one place */
+    }
+    return String(Number(result.toFixed(decimals)));
+}
+
+/* Fixed format if it fits, else exponent */
+function calcRoundResult(result) {
+    if (calcNeedsExponent(result)) {
+        return calcExponentResult(result);
+    }
+
+    const fixed = calcFixedResult(result);
+    if (fixed.length > CALC_RESULT_DIGITS) {
+        return calcExponentResult(result); /* Negative or rounded up too long */
+    }
+    return fixed;
+}
 
 /* Result of operation, as text */
 function calcOperate(first, operation, second) {
@@ -66,7 +120,7 @@ function calcOperate(first, operation, second) {
         }
         result = a / b;
     }
-    return String(Number(result.toFixed(CALC_DECIMALS)));
+    return calcRoundResult(result);
 }
 
 /* Display shows a number, not Error */
