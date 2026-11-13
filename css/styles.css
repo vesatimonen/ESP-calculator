@@ -178,6 +178,11 @@ html {
     padding-bottom: 0; /* SVG needs no Oswald lift */
 }
 
+/* Wave key light like C */
+.calc-wave {
+    background:     #D8EEFF;
+}
+
 /* = key looks like operators */
 .calc-equals {
     background:     #3FA9E0;
