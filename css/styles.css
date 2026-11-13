@@ -67,8 +67,6 @@ html {
 #game-title {
     margin-top:     10px;
 
-    position:       relative; /* For about button */
-
     font-size:      calc(36px * var(--element-scale));
     font-weight:    bold;
 
@@ -188,24 +186,6 @@ html {
 }
 
 
-
-/*** About button, small round i at right end of title ***/
-#button-about {
-    position:       absolute;
-    right:          4px;
-    top:            50%;
-    transform:      translateY(-50%);
-
-    width:          calc(34px * var(--element-scale));
-    height:         calc(34px * var(--element-scale));
-    border-radius:  50%;
-}
-
-#button-about svg {
-    width:          calc(22px * var(--element-scale));
-    height:         calc(22px * var(--element-scale));
-    stroke-width:   3;
-}
 
 @keyframes image-appear {
   0%   {opacity: 0;}
