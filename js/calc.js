@@ -130,7 +130,8 @@ function calcEntryIsNumber() {
 
 
 /*****************************************************************************
- * ESP keys: ESP sum with single digits, ordinary math with multiple digits
+ * ESP keys: ESP sum only for digit, ESP key, digit, =
+ * Anything else is ordinary math
  *****************************************************************************/
 /* Number on display becomes first number, key gives operation */
 function calcEsp(operation) {
@@ -139,11 +140,13 @@ function calcEsp(operation) {
     }
     calcCheckOrdinary();
 
-    /* Second number given: ordinary mode chains, ESP sum waits for = */
+    /* Second ESP key, or ESP key on a result: no ESP sum */
+    if (calc.first != undefined || calc.resultShown) {
+        calc.ordinary = true;
+    }
+
+    /* Second number given: chain like ordinary calculator */
     if (calc.first != undefined && calc.secondStarted) {
-        if (!calc.ordinary) {
-            return;
-        }
         calc.entry = calcOperate(calc.first, calc.operation, calc.entry);
     }
 
