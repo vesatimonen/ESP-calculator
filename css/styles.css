@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: calc((100svh - 24px) * 0.738); /* Page height is about 1.35 x width + 14px, measured */
+    --game-screen-max-width: calc((100svh - 4px) * 0.75); /* Page height is about 1.33 x width, measured */
     --ink-color:             #1C2B3A; /* Dark color for text and lines */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -64,16 +64,6 @@ html {
     visibility:         hidden; /* Show after load */
 }
 
-#game-title {
-    margin-top:     10px;
-
-    font-size:      calc(36px * var(--element-scale));
-    font-weight:    bold;
-
-    text-align:     center;
-}
-
-
 #game-board {
     position:       relative;
 
@@ -82,8 +72,8 @@ html {
     --key-font:     calc((100cqw - 3 * var(--key-gap)) / 4 * 0.648); /* 0.648 of key width, digit is 0.54 of key */
     container-type: inline-size; /* cqw is board inner width, same as keypad */
 
-    margin-top:     6px;
-    margin-bottom:  calc(2 * var(--key-gap)); /* Space under keypad, same as under display */
+    margin-top:     calc(3 * var(--key-gap)); /* Same space above and below */
+    margin-bottom:  calc(3 * var(--key-gap));
     padding:        8px;
 
     background:     #B0DDFF;
