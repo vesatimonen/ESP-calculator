@@ -35,6 +35,11 @@ function uiKeypadClick(event) {
         uiDisplayRedraw();
         return;
     }
+    if (key == ".") {
+        calcPoint();
+        uiDisplayRedraw();
+        return;
+    }
     if (key == "=") {
         calcEquals();
         uiDisplayRedraw();

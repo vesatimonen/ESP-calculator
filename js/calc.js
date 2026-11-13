@@ -21,8 +21,8 @@ function calcCheckOrdinary() {
     }
 }
 
-/* Add digit to end of entry, first digit replaces lone zero, no length limit */
-function calcDigit(digit) {
+/* After result or ESP key, next key starts new number at 0 */
+function calcStartEntry() {
     if (calc.resultShown) {
         calc.entry       = "0";
         calc.resultShown = false;
@@ -33,12 +33,28 @@ function calcDigit(digit) {
         calc.entry         = "0";
         calc.secondStarted = true;
     }
+}
+
+/* Add digit to end of entry, first digit replaces lone zero, no length limit */
+function calcDigit(digit) {
+    calcStartEntry();
 
     if (calc.entry == "0") {
         calc.entry = digit;
     } else {
         calc.entry = calc.entry + digit;
     }
+    calcCheckOrdinary();
+}
+
+
+/* Decimal point, one per number, alone starts as 0. */
+function calcPoint() {
+    calcStartEntry();
+    if (calc.entry.includes(".")) {
+        return;
+    }
+    calc.entry = calc.entry + ".";
     calcCheckOrdinary();
 }
 
@@ -165,7 +181,9 @@ function calcDigitSum(text) {
     let sum = 0;
 
     for (const digit of text) {
-        sum = sum + Number(digit);
+        if (digit != ".") {
+            sum = sum + Number(digit); /* Point is skipped */
+        }
     }
     return sum;
 }
