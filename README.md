@@ -1,7 +1,5 @@
-# DOTTIUM
+# ESP CALCULATOR
 
-DOTTIUM is a multi-challenge puzzle made with HTML, CSS and JavaScript.
+ESP CALCULATOR is a magic calculator made with HTML, CSS and JavaScript.
 
-<img src="images/capture.png" alt="Game example" />
-
-Play online https://dottium.app/
+<img src="images/capture.png" alt="ESP Calculator" />
