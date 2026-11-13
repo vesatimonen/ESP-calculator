@@ -210,7 +210,7 @@ html {
 
 /*** Calculator display, number on right ***/
 #calc-display {
-    padding:            0 12px;
+    padding:            0 12px 0.1em 12px; /* Bottom lifts Oswald digits, see .calc-key */
     margin-bottom:      8px;
 
     font-family:        'Oswald', sans-serif;
@@ -239,7 +239,9 @@ html {
     height:         calc(56px * var(--element-scale));
 
     font-family:    'Oswald', sans-serif;
-    font-size:      calc(28px * var(--element-scale));
+    font-size:      calc(42px * var(--element-scale));
+    line-height:    1;     /* Oswald line is 1.48em, taller than key, then text sticks to top */
+    padding-bottom: 0.1em; /* Oswald digits sit low, lift 0.05em, as Dottium fontYShift */
 }
 
 /* Zero takes two columns */
