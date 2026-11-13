@@ -233,10 +233,12 @@ html {
     gap:                   8px;
 }
 
-/* Keys fill grid cell */
+/* Keys are circles, as wide as grid cell */
 .calc-key {
     width:          100%;
-    height:         calc(56px * var(--element-scale));
+    height:         auto;
+    aspect-ratio:   1 / 1;
+    border-radius:  50%;
 
     font-family:    'Oswald', sans-serif;
     font-size:      calc(42px * var(--element-scale));
@@ -244,9 +246,9 @@ html {
     padding-bottom: 0.1em; /* Oswald digits sit low, lift 0.05em, as Dottium fontYShift */
 }
 
-/* Zero takes two columns */
-.calc-wide {
-    grid-column:    span 2;
+/* Zero under 2, first cell in row stays empty */
+.calc-zero {
+    grid-column-start: 2;
 }
 
 /* C, ± and % lighter */
