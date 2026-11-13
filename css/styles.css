@@ -32,6 +32,10 @@ body {
 /*** Drag paints anywhere in window, no zoom or scroll by touch ***/
 html {
     touch-action:   none;
+
+    /* Flex so screen centers both ways with auto margins */
+    display:        flex;
+    min-height:     100svh;
 }
 
 /*** Global default style ***/
@@ -55,8 +59,7 @@ html {
     max-width:          var(--game-screen-max-width);
     min-width:          var(--game-screen-min-width);
 
-    margin-left:        auto;
-    margin-right:       auto;
+    margin:             auto; /* Centered in window, html is flex */
 
     background-color:   #B0DDFF; /* #92D2F2, #B0DDFF*/
 
