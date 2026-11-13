@@ -213,6 +213,7 @@ html {
     padding:            0 12px;
     margin-bottom:      8px;
 
+    font-family:        'Oswald', sans-serif;
     font-size:          calc(48px * var(--element-scale));
     text-align:         right;
     line-height:        1.4;
