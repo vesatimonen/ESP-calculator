@@ -47,40 +47,20 @@
         </div>
 
 
-        <!-- GAME BOARD -->
+        <!-- CALCULATOR AREA -->
         <div id="game-board">
-            <!-- Modal for game over and about, tap anywhere closes -->
+            <!-- Modal for about, tap anywhere closes -->
             <div id="game-modal">
                 <div id="modal-title"></div>
                 <div id="modal-text"></div>
             </div>
-            <canvas id="game-canvas"></canvas>
-            <div id="game-grid">
-            </div>
         </div>
-
-        <!-- CONTROLS -->
-        <div id="game-controls">
-          <button id="button-restart" class="button" aria-label="Restart"><svg viewBox="0 0 24 24"><path d="M19.5 14.7A8 8 0 1 1 17.7 6.3"/><path d="M20 4v4h-4"/></svg></button>
-          <div id="game-info"></div>
-          <button id="button-undo" class="button" aria-label="Undo"><svg viewBox="0 0 24 24"><path d="M9 13L4 8l5-5"/><path d="M4 8h10.5a5.5 6.25 0 0 1 0 12.5H11"/></svg></button>
-        </div>
-
-        <!-- INSTRUCTIONS -->
-        <div id="game-instructions">
-            Place dots in the grid so that each row, column and region contains exactly the number of dots given for it. No number means any amount of dots, or none. The solution is unique.
-        </div>
-
-
-        <div id="debug-text"></div>
 
         <!-- SCRIPTS -->
         <script src="js/globals.js?v=1"></script>
         <script src="js/UI.js?v=1"></script>
         <script src="js/UI_window.js?v=1"></script>
-        <script src="js/UI_move.js?v=1"></script>
         <script src="js/UI_buttons.js?v=1"></script>
-        <script src="js/game.js?v=1"></script>
         <script src="js/main.js?v=2"></script>
     </body>
 </html>

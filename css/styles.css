@@ -80,6 +80,8 @@ html {
 
     margin-top:     6px;
 
+    min-height:     400px; /* Room for calculator, placeholder */
+
     background:     #B0DDFF;
 
     border-radius:  4px;
@@ -93,7 +95,7 @@ html {
 }
 
 
-/*** Modal for game over and about, in middle of board ***/
+/*** Modal for about, in middle of board ***/
 #game-modal {
     visibility:         hidden;
 
@@ -134,60 +136,6 @@ html {
     display:            none;
 }
 
-/* Controls help in about, dashes in one column */
-.modal-help {
-    display:               grid;
-    grid-template-columns: auto auto auto;
-    column-gap:            6px;
-    width:                 fit-content;
-    margin:                0 auto 20px auto; /* Centered, empty line below */
-}
-
-.modal-help span {
-    white-space:           pre; /* No wrap, \n breaks line */
-}
-
-.modal-help span:nth-child(3n+1) {
-    text-align:            right; /* Action */
-    font-weight:           600; /* Action stands out */
-}
-
-.modal-help span:nth-child(3n) {
-    text-align:            left; /* Result */
-}
-
-#game-canvas {
-    position: absolute; /* Fills board incl. hint margin */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: none;
-}
-
-.grid-row:after {
-    content:        "";
-    clear:          both;
-
-    display:        block;
-}
-
-.grid-cell {
-    margin:         0 auto;
-    float:          left;
-
-    font-family:    'Oswald', sans-serif;
-
-    background:     none;
-}
-
-
-/*** Game controls ***/
-#game-controls {
-    margin-top:     10px;
-
-    display:        flex;
-}
 
 .button {
     /* Behaviour */
@@ -212,7 +160,7 @@ html {
 /*    box-shadow:         3px 3px 5px rgb(0,0,0); */
 }
 
-/* Restart and undo icons, drawn in ink color */
+/* Button icons, drawn in ink color */
 .button svg {
     display:        block;
     margin:         auto;
@@ -236,14 +184,6 @@ html {
 
 
 
-#game-info {
-    font-size:      calc(28px * var(--element-scale));
-    font-weight:    bold;
-    text-align:     center;
-
-    margin:         auto;
-}
-
 /*** About button, small round i at right end of title ***/
 #button-about {
     position:       absolute;
@@ -260,20 +200,6 @@ html {
     width:          calc(22px * var(--element-scale));
     height:         calc(22px * var(--element-scale));
     stroke-width:   3;
-}
-
-/*** Game instructions ***/
-#game-instructions {
-    margin-top:     10px;
-
-    font-size:      calc(18px * var(--element-scale));
-    text-align:     center;
-}
-
-#debug-text {
-    position: relative;
-    left: 10px;
-    font-size:      14px;
 }
 
 @keyframes image-appear {
