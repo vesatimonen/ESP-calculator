@@ -30,6 +30,16 @@ function uiKeypadClick(event) {
     if (uiKeyIsDigit(key)) {
         calcDigit(key);
         uiDisplayRedraw();
+        return;
+    }
+    if (key == "=") {
+        calcEquals();
+        uiDisplayRedraw();
+        return;
+    }
+    if (key == "clear") {
+        calcClear();
+        uiDisplayRedraw();
     }
 }
 
