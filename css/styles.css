@@ -98,48 +98,6 @@ html {
 }
 
 
-/*** Modal for about, in middle of board ***/
-#game-modal {
-    visibility:         hidden;
-
-    position:           absolute;
-    z-index:            1;
-
-    padding:            14px; /* Grows with text */
-    font-size:          32px;
-    font-weight:        bold;
-    text-align:         center;
-
-    background-color:   #67BFEC;
-    border:             var(--frame-width) solid var(--ink-color);
-    border-radius:      8px;
-
-    white-space:        nowrap; /* Keep size, do not squeeze near edge */
-
-    line-height: 100%;
-    margin: auto;
-
-    /* Center */
-    top:                50%;
-    left:               50%;
-    transform:          translate(-50%, -50%);
-    white-space:        nowrap; /* Keep size, do not squeeze near edge */
-}
-
-/* Small second line, hidden when empty */
-#modal-text {
-    margin-top:         8px;
-    font-size:          16px;
-    line-height:        1.25; /* Own spacing, not title 32px */
-    font-weight:        normal;
-    white-space:        pre-line; /* Keep line breaks */
-}
-
-#modal-text:empty {
-    display:            none;
-}
-
-
 .button {
     /* Behaviour */
     display:        block;
@@ -183,13 +141,6 @@ html {
 
 .button:disabled {
     opacity: 0.3;
-}
-
-
-
-@keyframes image-appear {
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
 }
 
 
