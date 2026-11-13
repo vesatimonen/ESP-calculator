@@ -69,7 +69,7 @@ function uiAbout(event) {
     const text = "No ads, no tracking. Progress is saved only on this device.\n" +
                  "\n" +
                  "©\u00A0vesa.timonen[at]kolumbus.fi";
-    modalShow("DOTTIUM", text, false);
+    modalShow("ESP CALCULATOR", text, false);
     elements.modalText.prepend(uiAboutHelp()); /* modalShow clears it next time */
 }
 
