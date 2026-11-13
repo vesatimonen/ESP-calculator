@@ -4,31 +4,23 @@
 const calc = {
     entry:         "0",       /* Number being typed, as text */
     resultShown:   false,     /* Display shows result, next digit starts new entry */
-    first:         undefined, /* First number, set by ESP key */
-    operation:     undefined, /* Operation of ESP key, used in ordinary mode */
-    secondStarted: false,     /* Digit typed after ESP key */
-    ordinary:      false      /* Multiple digits given since C or =, ESP keys do math */
+    first:         undefined, /* First number, set by operator key */
+    operation:     undefined, /* Operation of operator key */
+    secondStarted: false      /* Digit typed after operator key */
 };
 
 
 /*****************************************************************************
  * Number input
  *****************************************************************************/
-/* Multiple digits on display switch to ordinary mode until C or = */
-function calcCheckOrdinary() {
-    if (calc.entry.length > 1) {
-        calc.ordinary = true;
-    }
-}
-
-/* After result or ESP key, next key starts new number at 0 */
+/* After result or operator key, next key starts new number at 0 */
 function calcStartEntry() {
     if (calc.resultShown) {
         calc.entry       = "0";
         calc.resultShown = false;
     }
 
-    /* First digit after ESP key starts second number */
+    /* First digit after operator key starts second number */
     if (calc.first != undefined && !calc.secondStarted) {
         calc.entry         = "0";
         calc.secondStarted = true;
@@ -44,7 +36,6 @@ function calcDigit(digit) {
     } else {
         calc.entry = calc.entry + digit;
     }
-    calcCheckOrdinary();
 }
 
 
@@ -55,11 +46,10 @@ function calcPoint() {
         return;
     }
     calc.entry = calc.entry + ".";
-    calcCheckOrdinary();
 }
 
 
-/* Change sign of number on display, 0 and Error stay, not right after ESP key */
+/* Change sign of number on display, 0 and Error stay, not right after operator key */
 function calcSign() {
     if (!calcEntryIsNumber() || Number(calc.entry) == 0) {
         return;
@@ -73,7 +63,6 @@ function calcSign() {
     } else {
         calc.entry = "-" + calc.entry;
     }
-    calcCheckOrdinary();
 }
 
 
@@ -164,22 +153,15 @@ function calcEntryIsNumber() {
 
 
 /*****************************************************************************
- * Operator keys: wave gives ESP sum only for digit, operator, digit
- * Anything else is ordinary math
+ * Operator keys, work like ordinary calculator
  *****************************************************************************/
 /* Number on display becomes first number, key gives operation */
 function calcEsp(operation) {
     if (!calcEntryIsNumber()) {
         return;
     }
-    calcCheckOrdinary();
 
-    /* Second ESP key, or ESP key on a result: no ESP sum */
-    if (calc.first != undefined || calc.resultShown) {
-        calc.ordinary = true;
-    }
-
-    /* Second number given: chain like ordinary calculator */
+    /* Second number given: chain calculations */
     if (calc.first != undefined && calc.secondStarted) {
         calc.entry = calcOperate(calc.first, calc.operation, calc.entry);
     }
@@ -206,21 +188,27 @@ function calcDigitSum(text) {
     return sum;
 }
 
+/* Count of digits in text, point and minus are skipped */
+function calcDigitCount(text) {
+    let count = 0;
+
+    for (const digit of text) {
+        if (digit >= "0" && digit <= "9") {
+            count = count + 1;
+        }
+    }
+    return count;
+}
+
 /* Result is digit sum modulo 9, any amount of digits */
 function calcDigitResult(text) {
     return calcDigitSum(text) % 9;
 }
 
-/* Exact sum of two numbers given as text, any length */
-function calcAdd(first, second) {
-    return (BigInt(first) + BigInt(second)).toString();
-}
-
-/* Result shown, next number starts in ESP mode again */
+/* Result shown, next digit starts new number */
 function calcShowResult(result) {
     calc.entry       = result;
     calc.first       = undefined;
-    calc.ordinary    = false;
     calc.resultShown = true;
 }
 
@@ -243,24 +231,21 @@ function calcEquals() {
 /*****************************************************************************
  * Wave key, special results
  *****************************************************************************/
-/* Single digit, operator, single digit: ESP sum */
-function calcWaveEspSum() {
-    return calc.first != undefined && calc.secondStarted && !calc.ordinary;
+/* Multiple digits typed, no operator before them */
+function calcWaveSpecial() {
+    if (calc.first != undefined || calc.resultShown) {
+        return false;
+    }
+    return calcDigitCount(calc.entry) > 1;
 }
 
-/* ESP sum, or digit sum modulo 9 of plain number, else nothing */
+/* Digit sum modulo 9 right after multiple digits, else same as = */
 function calcWave() {
-    if (!calcEntryIsNumber()) {
+    if (calcWaveSpecial()) {
+        calcShowResult(String(calcDigitResult(calc.entry)));
         return;
     }
-    if (calcWaveEspSum()) {
-        calcShowResult(calcAdd(calc.first, calc.entry));
-        return;
-    }
-    if (calc.first != undefined) {
-        return; /* Nothing in middle of calculation */
-    }
-    calcShowResult(String(calcDigitResult(calc.entry)));
+    calcEquals();
 }
 
 
@@ -273,5 +258,4 @@ function calcClear() {
     calc.resultShown   = false;
     calc.first         = undefined;
     calc.secondStarted = false;
-    calc.ordinary      = false;
 }
