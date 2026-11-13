@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: min(720px, calc((100svh - 115px) * 0.73)); /* Page height is about 1.37 x width + 101px, measured */
+    --game-screen-max-width: min(720px, calc((100svh - 50px) * 0.65)); /* Page height is about 1.51 x width + 40px, measured */
     --ink-color:             #1C2B3A; /* Same as INK_COLOR in UI.js */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -231,7 +231,7 @@ html {
 #calc-keys {
     display:               grid;
     grid-template-columns: repeat(4, 1fr);
-    gap:                   8px;
+    gap:                   calc(8px * var(--element-scale)); /* Scales with keys */
 }
 
 /* Keys are circles, as wide as grid cell */
