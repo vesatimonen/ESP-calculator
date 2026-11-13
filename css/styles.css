@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: min(720px, calc((100svh - 50px) * 0.65)); /* Page height is about 1.51 x width + 40px, measured */
+    --game-screen-max-width: min(720px, calc((100svh - 40px) * 0.63)); /* Page height is about 1.58 x width + 34px, measured */
     --ink-color:             #1C2B3A; /* Same as INK_COLOR in UI.js */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -78,6 +78,11 @@ html {
 
 #game-board {
     position:       relative;
+
+    /* Key gap and font, shared by display and keys */
+    --key-gap:      calc(8px * var(--element-scale));
+    --key-font:     calc((100cqw - 3 * var(--key-gap)) / 4 * 0.648); /* 0.648 of key width, digit is 0.54 of key */
+    container-type: inline-size; /* cqw is board inner width, same as keypad */
 
     margin-top:     6px;
     padding:        8px;
@@ -215,7 +220,7 @@ html {
     margin-bottom:      8px;
 
     font-family:        'Oswald', sans-serif;
-    font-size:          calc(48px * var(--element-scale));
+    font-size:          var(--key-font); /* Same as keys */
     text-align:         right;
     line-height:        1.4;
 
@@ -229,13 +234,9 @@ html {
 
 /*** Keypad, 4 columns ***/
 #calc-keys {
-    --key-gap:             calc(8px * var(--element-scale)); /* Scales with keys */
-
     display:               grid;
     grid-template-columns: repeat(4, 1fr);
     gap:                   var(--key-gap);
-
-    container-type:        inline-size; /* Keys use cqw for font size */
 }
 
 /* Keys are circles, as wide as grid cell */
@@ -245,16 +246,15 @@ html {
     aspect-ratio:   1 / 1;
     border-radius:  50%;
 
-    /* Font size 0.648 of key width, digit is 0.54 of key */
     font-family:    'Oswald', sans-serif;
-    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.648);
+    font-size:      var(--key-font);
     line-height:    0.5;   /* Line must be lower than key, else text sticks to top */
     padding-bottom: 0.1em; /* Oswald digits sit low, lift 0.05em, as Dottium fontYShift */
 }
 
 /* % is wide, smaller so it stays in circle */
 .calc-key[data-key="percent"] {
-    font-size:      calc((100cqw - 3 * var(--key-gap)) / 4 * 0.518); /* 0.8 of other keys */
+    font-size:      calc(var(--key-font) * 0.8);
 }
 
 /* ± sits on baseline, lift it to middle, measured */
