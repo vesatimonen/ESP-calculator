@@ -6,11 +6,16 @@ function uiKeyIsDigit(key) {
     return key.length == 1 && key >= "0" && key <= "9";
 }
 
-/* ESP symbol keys, data-key is old operator */
-const UI_ESP_KEYS = ["*", "-", "+", "/"];
+/* ESP keys by data-key: circle, plus, waves, square */
+const UI_ESP_OPERATIONS = {
+    "*": "multiply",
+    "-": "add",
+    "+": "subtract",
+    "/": "divide"
+};
 
 function uiKeyIsEsp(key) {
-    return UI_ESP_KEYS.includes(key);
+    return key in UI_ESP_OPERATIONS;
 }
 
 function uiKeypadClick(event) {
@@ -26,7 +31,7 @@ function uiKeypadClick(event) {
         return;
     }
     if (uiKeyIsEsp(key)) {
-        calcEsp();
+        calcEsp(UI_ESP_OPERATIONS[key]);
         uiDisplayRedraw();
         return;
     }
