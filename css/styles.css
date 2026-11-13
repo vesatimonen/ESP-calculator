@@ -216,7 +216,7 @@ html {
 
 /*** Calculator display, number on right ***/
 #calc-display {
-    padding:            0 12px 0.1em 12px; /* Bottom lifts Oswald digits, see .calc-key */
+    padding:            0 0.15em 0.1em 0.15em; /* Sides scale with text, bottom lifts Oswald digits */
     margin-bottom:      8px;
 
     font-family:        'Oswald', sans-serif;

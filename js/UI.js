@@ -40,3 +40,11 @@ function uiSetup() {
     document.documentElement.style.setProperty("--frame-width", uiFrameWidth(cellSize) + "px");
     document.documentElement.style.setProperty("--element-scale", uiElementScale(cellSize));
 }
+
+
+/*****************************************************************************
+ * Show current entry in display
+ *****************************************************************************/
+function uiDisplayRedraw() {
+    elements.display.textContent = calc.entry;
+}

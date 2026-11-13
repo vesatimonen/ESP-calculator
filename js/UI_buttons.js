@@ -10,3 +10,27 @@ function uiAbout(event) {
 }
 
 elements.buttonAbout.addEventListener("click", uiAbout);
+
+
+/*****************************************************************************
+ * Keypad, one handler reads data-key of pressed key
+ *****************************************************************************/
+/* Keys 0-9 */
+function uiKeyIsDigit(key) {
+    return key.length == 1 && key >= "0" && key <= "9";
+}
+
+function uiKeypadClick(event) {
+    const button = event.target.closest("button");
+    if (button == null) {
+        return;
+    }
+
+    const key = button.dataset.key;
+    if (uiKeyIsDigit(key)) {
+        calcDigit(key);
+        uiDisplayRedraw();
+    }
+}
+
+elements.keys.addEventListener("click", uiKeypadClick);
