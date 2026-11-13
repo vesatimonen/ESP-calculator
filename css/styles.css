@@ -18,7 +18,7 @@
 
 :root {
     --game-screen-max-width: calc((100svh - 45px) * 0.78); /* Page height is about 1.28 x width + 38px, measured */
-    --ink-color:             #1C2B3A; /* Same as INK_COLOR in UI.js */
+    --ink-color:             #1C2B3A; /* Dark color for text and lines */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
 }
@@ -28,7 +28,7 @@ body {
     color:          var(--ink-color);
 }
 
-/*** Drag paints anywhere in window, no zoom or scroll by touch ***/
+/*** No zoom or scroll by touch, screen centered ***/
 html {
     touch-action:   none;
 
