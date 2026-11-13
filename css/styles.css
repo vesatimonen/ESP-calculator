@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: calc((100svh - 2px) * 0.70); /* Page height is about 1.43 x width, measured */
+    --game-screen-max-width: calc((100svh - 2px) * 0.595); /* Page height is about 1.68 x width, measured */
     --ink-color:             #1C2B3A; /* Dark color for text and lines */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
