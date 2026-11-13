@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: calc((100svh - 4px) * 0.75); /* Page height is about 1.33 x width, measured */
+    --game-screen-max-width: calc((100svh - 2px) * 0.70); /* Page height is about 1.43 x width, measured */
     --ink-color:             #1C2B3A; /* Dark color for text and lines */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -129,7 +129,7 @@ html {
     margin-bottom:      calc(2 * var(--key-gap)); /* Twice the gap between keys */
 
     font-family:        'Oswald', sans-serif;
-    font-size:          var(--key-font); /* Same as keys */
+    font-size:          calc(var(--key-font) * 1.5); /* 1.5 x key font */
     text-align:         right;
     line-height:        1.1; /* Box is 1.2em with bottom padding */
 

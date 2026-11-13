@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Calculator state
  *****************************************************************************/
-const CALC_MAX_DIGITS = 12; /* Most digits that fit in display */
+const CALC_MAX_DIGITS = 8; /* Most digits that fit in display */
 
 const calc = {
     entry:       "0",  /* Number being typed, as text */
