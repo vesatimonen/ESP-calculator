@@ -199,11 +199,11 @@ html {
     padding-bottom: 0;
 }
 
-/* Backspace icon 44% bigger, line stays same thickness */
+/* Backspace icon 58% bigger, line stays same thickness */
 .calc-key.calc-back svg {
-    width:          0.887em;
-    height:         0.887em;
-    stroke-width:   2.69;
+    width:          0.976em;
+    height:         0.976em;
+    stroke-width:   2.45;
 }
 
 /* ESP symbol size and line, same weight as digits */
