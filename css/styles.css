@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: min(720px, calc((100svh - 40px) * 0.63)); /* Page height is about 1.58 x width + 34px, measured */
+    --game-screen-max-width: calc((100svh - 45px) * 0.78); /* Page height is about 1.28 x width + 38px, measured */
     --ink-color:             #1C2B3A; /* Same as INK_COLOR in UI.js */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -222,7 +222,7 @@ html {
     font-family:        'Oswald', sans-serif;
     font-size:          var(--key-font); /* Same as keys */
     text-align:         right;
-    line-height:        1.4;
+    line-height:        1.1; /* Box is 1.2em with bottom padding */
 
     background-color:   #FFFFFF;
     border:             var(--frame-width) solid var(--ink-color);
@@ -252,27 +252,12 @@ html {
     padding-bottom: 0.1em; /* Oswald digits sit low, lift 0.05em, as Dottium fontYShift */
 }
 
-/* % is wide, smaller so it stays in circle */
-.calc-key[data-key="percent"] {
-    font-size:      calc(var(--key-font) * 0.8);
-}
-
-/* ± sits on baseline, lift it to middle, measured */
-.calc-key[data-key="sign"] {
-    padding-bottom: 0.464em;
-}
-
-/* Zero under 2, first cell in row stays empty */
-.calc-zero {
-    grid-column-start: 2;
-}
-
 /* = stays in operator column */
 .calc-key[data-key="="] {
     grid-column-start: 4;
 }
 
-/* C, ± and % lighter */
+/* C lighter */
 .calc-func {
     background:     #D8EEFF;
 }

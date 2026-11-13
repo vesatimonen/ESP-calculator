@@ -9,19 +9,13 @@ const SCREEN_CELLS = 8.65;
 
 /* Title and buttons grow and shrink with screen */
 const ELEMENT_SCALE_BASE_CELL = 50;  /* Cell size where scale is 1 */
-const ELEMENT_SCALE_MAX       = 1.3; /* Biggest scale */
 
 
 /*****************************************************************************
- * Scale for page elements, shrinks with screen, max ELEMENT_SCALE_MAX
+ * Scale for page elements, grows and shrinks with screen
  *****************************************************************************/
 function uiElementScale(cellSize) {
-    const scale = cellSize / ELEMENT_SCALE_BASE_CELL;
-
-    if (scale > ELEMENT_SCALE_MAX) {
-        return ELEMENT_SCALE_MAX;
-    }
-    return scale;
+    return cellSize / ELEMENT_SCALE_BASE_CELL;
 }
 
 
