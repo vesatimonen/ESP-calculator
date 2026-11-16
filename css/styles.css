@@ -17,7 +17,7 @@
 }
 
 :root {
-    --game-screen-max-width: calc((100svh - 2px) * 0.595); /* Page height is about 1.68 x width, measured */
+    --game-screen-max-width: calc((100svh - 2px) * 0.538); /* Page height is about 1.86 x width, 3 key columns */
     --ink-color:             #1C2B3A; /* Dark color for text and lines */
     --frame-width:           2px;     /* Set from FRAME_WIDTH in UI.js */
     --element-scale:         1;       /* Set from cell size in UI.js */
@@ -69,9 +69,8 @@ html {
 
     /* Key gap and font, shared by display and keys */
     --key-gap:      calc(8px * var(--element-scale));
-    --key-font:     calc((100cqw - 3 * var(--key-gap)) / 4 * 0.648); /* 0.648 of key width, digit is 0.54 of key */
-    --key-size:     calc((100cqw - 3 * var(--key-gap)) / 4); /* Key width, 4 keys fit board */
-    --keypad-width: calc(3 * var(--key-size) + 2 * var(--key-gap)); /* 3 keys and 2 gaps */
+    --key-size:     calc((100cqw - 2 * var(--key-gap)) / 3); /* Key width, 3 keys fill board */
+    --key-font:     calc(var(--key-size) * 0.648); /* 0.648 of key width, digit is 0.54 of key */
     container-type: inline-size; /* cqw is board inner width, same as keypad */
 
     margin-top:     calc(3 * var(--key-gap)); /* Same space above and below */
@@ -129,10 +128,6 @@ html {
 #calc-display {
     padding:            0 0.15em 0.1em 0.15em; /* Sides scale with text, bottom lifts Oswald digits */
     margin-bottom:      calc(2 * var(--key-gap)); /* Twice the gap between keys */
-    margin-left:        auto; /* Centered over keypad */
-    margin-right:       auto;
-    width:              var(--keypad-width); /* Same width as keypad */
-    box-sizing:         border-box; /* Width includes padding and frame */
 
     font-family:        'Oswald', sans-serif;
     font-size:          calc(var(--key-font) * 1.5); /* 1.5 x key font */
@@ -151,11 +146,10 @@ html {
     justify-content:    flex-end;
 }
 
-/*** Keypad, 3 columns, keys same size as 4 ***/
+/*** Keypad, 3 columns ***/
 #calc-keys {
     display:               grid;
-    grid-template-columns: repeat(3, var(--key-size));
-    justify-content:       center;
+    grid-template-columns: repeat(3, 1fr);
     gap:                   var(--key-gap);
 }
 
