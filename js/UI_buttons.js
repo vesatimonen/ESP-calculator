@@ -6,18 +6,6 @@ function uiKeyIsDigit(key) {
     return key.length == 1 && key >= "0" && key <= "9";
 }
 
-/* ESP keys by data-key: times, plus, minus, divide icons */
-const UI_ESP_OPERATIONS = {
-    "*": "multiply",
-    "-": "add",
-    "+": "subtract",
-    "/": "divide"
-};
-
-function uiKeyIsEsp(key) {
-    return key in UI_ESP_OPERATIONS;
-}
-
 function uiKeypadClick(event) {
     const button = event.target.closest("button");
     if (button == null) {
@@ -30,33 +18,8 @@ function uiKeypadClick(event) {
         uiDisplayRedraw();
         return;
     }
-    if (uiKeyIsEsp(key)) {
-        calcEsp(UI_ESP_OPERATIONS[key]);
-        uiDisplayRedraw();
-        return;
-    }
-    if (key == "back") {
-        calcBackspace();
-        uiDisplayRedraw();
-        return;
-    }
-    if (key == "sign") {
-        calcSign();
-        uiDisplayRedraw();
-        return;
-    }
-    if (key == ".") {
-        calcPoint();
-        uiDisplayRedraw();
-        return;
-    }
     if (key == "waves") {
         calcWave();
-        uiDisplayRedraw();
-        return;
-    }
-    if (key == "=") {
-        calcEquals();
         uiDisplayRedraw();
         return;
     }

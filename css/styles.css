@@ -145,10 +145,11 @@ html {
     justify-content:    flex-end;
 }
 
-/*** Keypad, 4 columns ***/
+/*** Keypad, 3 columns, keys same size as 4 ***/
 #calc-keys {
     display:               grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, calc((100% - 3 * var(--key-gap)) / 4));
+    justify-content:       center;
     gap:                   var(--key-gap);
 }
 
@@ -167,7 +168,7 @@ html {
     background:     #7CC9F0; /* Number keys, a bit lighter than other buttons */
 }
 
-/* C and = lighter */
+/* C lighter */
 .calc-func {
     background:     #D8EEFF;
 }
@@ -181,29 +182,6 @@ html {
 /* Wave key light like C */
 .calc-wave {
     background:     #D8EEFF;
-}
-
-/* = key looks like operators */
-.calc-equals {
-    background:     #3FA9E0;
-    padding-bottom: 0; /* SVG needs no Oswald lift */
-}
-
-/* Sign key is icon, needs no Oswald lift */
-.calc-sign {
-    padding-bottom: 0;
-}
-
-/* Backspace key is icon, needs no Oswald lift */
-.calc-back {
-    padding-bottom: 0;
-}
-
-/* Backspace icon 58% bigger, line stays same thickness */
-.calc-key.calc-back svg {
-    width:          0.976em;
-    height:         0.976em;
-    stroke-width:   2.45;
 }
 
 /* ESP symbol size and line, same weight as digits */
